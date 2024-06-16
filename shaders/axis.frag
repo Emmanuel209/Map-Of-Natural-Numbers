@@ -19,17 +19,6 @@ mat2 rot(float a) {
 }
 
 
-vec3 rotate_world(vec3 in_position) {
-    vec3 v_position = in_position;
-
-    v_position -= u_center;
-    v_position.xz *= rot(u_time * rot_speed);
-    v_position += u_center;
-
-    return v_position;
-}
-
-
 void main() {
     vec3 v_position = rotate_world(in_position);
 
