@@ -5,7 +5,7 @@ import umap
 
 
 @njit(cache=True)
-#
+#Evaluate whether a given number is prime using divisibility test
 def is_prime(num):
     if num == 2:
         return True
@@ -18,7 +18,7 @@ def is_prime(num):
 
 
 @njit(cache=True)
-#
+#Generates a dictionary that assigns prime numbers less than or equal to 'numbers' starting from 0
 def get_prime_hash_map(numbers):
     prime_hashmap_ = {2: 0}
     #
@@ -32,7 +32,7 @@ def get_prime_hash_map(numbers):
 
 
 @njit(cache=True)
-#
+#Returns a set of prime factors of a composite number 'num' using 'prime_hashmap_' to obtain the necessary primes
 def get_composite_number_factors(num, prime_hashmap_):
     factors_ = set()
     #
@@ -50,7 +50,7 @@ def get_composite_number_factors(num, prime_hashmap_):
             break
     return factors_
 
-
+#Fills a sparse matrix in the positions corresponding to the prime factors of numbers from 2 to 'numbers'
 def fill_array(numbers, prime_hashmap_, factor_array_):
     for n in range(2, numbers):
         #
