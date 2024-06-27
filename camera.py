@@ -1,6 +1,6 @@
 from settings import *
 
-
+#Camera provides keyboard and mouse control to move and rotate the camera in a 3D application.
 class Camera:
     def __init__(self, app, position=INIT_CAM_POS, yaw=INIT_CAM_YAW, pitch=INIT_CAM_PITCH):
         self.app = app
@@ -15,14 +15,14 @@ class Camera:
 
         self.m_proj = glm.perspective(V_FOV, ASPECT_RATIO, NEAR, FAR)
         self.m_view = glm.mat4()
-
+    #Manage camera control with the mouse. Gets the relative mouse offset and uses it to update the angles
     def mouse_control(self):
         mouse_dx, mouse_dy = pg.mouse.get_rel()
         if mouse_dx:
             self.rotate_yaw(delta_x=mouse_dx * MOUSE_SENSITIVITY)
         if mouse_dy:
             self.rotate_pitch(delta_y=mouse_dy * MOUSE_SENSITIVITY)
-
+    #Manage camera movement with the keyboard
     def keyboard_control(self):
         key_state = pg.key.get_pressed()
         vel = CAM_SPEED * self.app.delta_time
@@ -43,17 +43,17 @@ class Camera:
             self.move_down(vel)
         #
         self.position += next_step
-
+    #Updates the camera in each frame.
     def update(self):
         self.keyboard_control()
         self.mouse_control()
         #
         self.update_vectors()
         self.update_view_matrix()
-
+    #Calculate view array using glm.lookAt function
     def update_view_matrix(self):
         self.m_view = glm.lookAt(self.position, self.position + self.forward, self.up)
-
+    #Update direction vectors
     def update_vectors(self):
         self.forward.x = glm.cos(self.yaw) * glm.cos(self.pitch)
         self.forward.y = glm.sin(self.pitch)
@@ -62,11 +62,11 @@ class Camera:
         self.forward = glm.normalize(self.forward)
         self.right = glm.normalize(glm.cross(self.forward, glm.vec3(0, 1, 0)))
         self.up = glm.normalize(glm.cross(self.right, self.forward))
-
+    #Updates pitch angle based on mouse movement on the vertical axis
     def rotate_pitch(self, delta_y):
         self.pitch -= delta_y
         self.pitch = glm.clamp(self.pitch, -PITCH_MAX, PITCH_MAX)
-
+    #Updates yaw angle based on mouse movement on the horizontal axis
     def rotate_yaw(self, delta_x):
         self.yaw += delta_x
 
