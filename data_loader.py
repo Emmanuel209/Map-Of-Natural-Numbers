@@ -2,7 +2,7 @@ import numpy as np
 from mapper import is_prime
 from numba import njit
 
-
+#The class loads 3D data, calculates the scale and center, and creates an array of flags to indicate whether the indices in the data correspond to prime numbers.
 class DataLoader:
     def __init__(self, data_path='data/map_data_3d_1000000_15_02.npy'):
         #
