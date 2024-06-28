@@ -22,7 +22,7 @@ class App:
         self.ctx.enable(flags=mgl.PROGRAM_POINT_SIZE)
         self.ctx.gc_mode = 'auto'
         
-        self.clock = pg.time.clock()
+        self.clock = pg.time.Clock()
         self.delta_time = 0.0
         self.time = 0.0
         

@@ -1,5 +1,5 @@
 #import classes and modules necessary for rendering
-from shader_program import ShaderProgram
+from shader_program import ShaderProgram  
 from camera import Camera
 from meshes.point_cloud_mesh import PointCloudMesh
 from meshes.axis_mesh import AxisMesh
