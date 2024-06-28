@@ -6,10 +6,10 @@ import moderngl as mgl
 class PointCloudMesh:
     def __init__(self, renderer):
         self.ctx = renderer.ctx
-        self.program =renderer.shader_program.poin_cloud
+        self.program =renderer.shader_program.point_cloud
         self.data_loader = renderer.app.data_loader
         #
-        self.vao =self.get.vao()
+        self.vao =self.get_vao()
         
     def get_vao(self):
         point_position_buffer =self.ctx.buffer(self.data_loader.point_positions)
