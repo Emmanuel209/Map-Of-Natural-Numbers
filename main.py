@@ -1,14 +1,16 @@
 import sys
 import moderngl as mgl
-import os
+import pygame as pg
 from settings import *
 from renderer import Renderer
 from data_loader import DataLoader
+import os
 
 
 class App:
     def __init__(self):
         pg.init()
+        pg.mixer.init()  # Initialize the sound mixer
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, MAJOR_VERSION)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, MINOR_VERSION) 
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE) 
@@ -34,6 +36,11 @@ class App:
         self.data_loader = DataLoader()
         self.renderer = Renderer(self)
         
+        
+        # Load and play sound
+        self.sound = pg.mixer.Sound("sound/space.mp3")
+        self.sound.play();
+        
     def update (self):
         self.renderer.update()
         #
@@ -57,7 +64,7 @@ class App:
             self.update()
             self.render()
         pg.quit()
-        pg.exit()
+        sys.exit()
         
         
 if __name__ == '__main__':

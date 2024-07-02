@@ -47,6 +47,3 @@ MOUSE_SENSITIVITY = 0.0015
 
 # uniform block
 UBO_BIND_VALUE = 0
-
-
-#
