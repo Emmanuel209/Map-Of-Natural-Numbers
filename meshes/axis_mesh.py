@@ -29,11 +29,21 @@ class AxisMesh:
     def render(self):
         self.vao.render(mgl.LINES)
 
+
+    #with guide lines
+    # def get_vertex_data(self):
+    #     vert_data = np.array(
+    #         [[-1, 0, 0], [1, 0, 0],
+    #          [0, 0, 1], [0, 0, -1],
+    #          [0, -1, 0], [0, 1, 0],], dtype='float32')
+    
+    
+    #without guide lines
     def get_vertex_data(self):
         vert_data = np.array(
-            [[-1, 0, 0], [1, 0, 0],
-             [0, 0, 1], [0, 0, -1],
-             [0, -1, 0], [0, 1, 0],], dtype='float32')
+            [[0, 0, 0], [0, 0, 0],
+             [0, 0, 0], [0, 0, 0],
+             [0, 0, 0], [0, 0, 0],], dtype='float32')    
 
         vert_data = vert_data * self.scale + self.center
         return vert_data
