@@ -31,22 +31,24 @@ class ShaderProgram:
             'u_time': 4
         }
 
-        # offsets
+        # Calculate offsets
         self.offsets = dict(zip(
             self.ubo_bytes, accumulate(self.ubo_bytes.values(), initial=0)))
 
-        # get buffer size
+        # Calculate buffer size
         min_size = sum(self.ubo_bytes.values())
         buffer_size = min_size if not min_size % 16 else ((min_size // 16) + 1) * 16
         # padding = buffer_size - min_size
 
+        # Create the uniform buffer
         # ubo
         self.uniform_buffer = self.ctx.buffer(reserve=buffer_size)
         self.uniform_buffer.bind_to_uniform_block(binding=UBO_BIND_VALUE)
 
-        # binding
+        # Bind the UBO to the shader
         self.axis['UBO'].binding = UBO_BIND_VALUE
 
+        # Set initial values for uniforms
         self.set_uniforms_on_init()
 
     def set_uniforms_on_init(self):
@@ -72,11 +74,13 @@ class ShaderProgram:
             data=struct.pack('=1f', self.app.time), offset=self.offsets['u_time'])
 
     def get_program(self, shader_name):
+        # Read the vertex shader
         with open(f'shaders/{shader_name}.vert') as file:
             vertex_shader = file.read()
-
+        # Read the fragment shader
         with open(f'shaders/{shader_name}.frag') as file:
             fragment_shader = file.read()
 
+        # Create and return the shader program
         program = self.ctx.program(vertex_shader=vertex_shader, fragment_shader=fragment_shader)
         return program
