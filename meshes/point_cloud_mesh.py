@@ -2,7 +2,9 @@ from settings import *
 import numpy as np
 import moderngl as mgl
 
-
+#is used to render a point cloud in 3D space using ModernGL.
+#Points are loaded from a data_loader object and rendered using 
+#a shader program that processes both the positions of the points and flags that indicate whether the points are prime.
 class PointCloudMesh:
     def __init__(self, renderer):
         self.ctx = renderer.ctx
