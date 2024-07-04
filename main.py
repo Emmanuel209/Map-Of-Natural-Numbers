@@ -6,18 +6,20 @@ from renderer import Renderer
 from data_loader import DataLoader
 import os
 
-
 class App:
     def __init__(self):
         pg.init()
         pg.mixer.init()  # Initialize the sound mixer
+
+        # Set OpenGL attributes
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, MAJOR_VERSION)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, MINOR_VERSION) 
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE) 
-        pg.display.gl_set_attribute (pg.GL_DEPTH_SIZE, DEPTH_SIZE)
-        pg.display.gl_set_attribute (pg.GL_MULTISAMPLESAMPLES, NUM_SAMPLES)
+        pg.display.gl_set_attribute(pg.GL_DEPTH_SIZE, DEPTH_SIZE)
+        pg.display.gl_set_attribute(pg.GL_MULTISAMPLESAMPLES, NUM_SAMPLES)
         
-        pg.display.set_mode(WIN_RES, flags=pg.OPENGL | pg.DOUBLEBUF)
+        # Set display mode to fullscreen
+        pg.display.set_mode((0, 0), pg.OPENGL | pg.DOUBLEBUF | pg.FULLSCREEN)
         self.ctx = mgl.create_context()
         
         self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.BLEND)
@@ -36,24 +38,22 @@ class App:
         self.data_loader = DataLoader()
         self.renderer = Renderer(self)
         
-        
         # Load and play sound
         self.sound = pg.mixer.Sound("sound/space.mp3")
-        self.sound.play();
+        self.sound.play()
         
-    def update (self):
+    def update(self):
         self.renderer.update()
-        #
         self.delta_time = self.clock.tick(FPS_TARGET)
         self.time = pg.time.get_ticks() * 0.001
-        pg.display.set_caption(f'{self.clock.get_fps() :.0f}')
+        pg.display.set_caption(f'{self.clock.get_fps():.0f}')
             
     def render(self):
         self.ctx.clear()
         self.renderer.render()
         pg.display.flip()
             
-    def handle_events (self):
+    def handle_events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 self.is_running = False
@@ -65,7 +65,6 @@ class App:
             self.render()
         pg.quit()
         sys.exit()
-        
         
 if __name__ == '__main__':
     game = App()
