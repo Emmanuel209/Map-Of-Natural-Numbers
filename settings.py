@@ -22,10 +22,7 @@ KEYS = {
     'DOWN': pg.K_e,
     'STRAFE_L': pg.K_a,
     'STRAFE_R': pg.K_d,
-    'INTERACT': pg.K_f,
-    'WEAPON_1': pg.K_1,
-    'WEAPON_2': pg.K_2,
-    'WEAPON_3': pg.K_3,
+
 }
 
 # camera
