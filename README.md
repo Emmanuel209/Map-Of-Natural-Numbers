@@ -18,3 +18,26 @@ To clone a Git repository, you must follow the following steps:
 ![Steps](<Pictures/Final step.png>)
 
 And voila, the repository was cloned correctly.
+
+AUTHORS:
+*	Castro Romano Yared Emmanuel
+*	Urroz Gutiérrez Lizeth Abigail
+*	Velásquez Alvarado Melanie Sofía
+*	Velázquez Ríos José Leonel
+
+GitHub repository link
+•	https://github.com/Emmanuel209/Map-Of-Natural-Numbers
+
+Link to the running video on YouTube
+•	https://youtu.be/wYkRBlmCaX0
+
+
+Instructions on how to move in the window
+A - Left
+W - Approach
+D - Right
+S - Move away
+Q - Rise
+E - Lower
+ESC - Exit window
+Mouse - Movement in all directions
