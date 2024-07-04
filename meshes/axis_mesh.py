@@ -2,7 +2,7 @@ from settings import *
 import numpy as np
 import moderngl as mgl
 
-
+#provides a visual representation of axes in 3D space using ModernGL
 class AxisMesh:
     def __init__(self, renderer, scale=1.0, center=glm.vec3(0.0)):
         self.ctx = renderer.ctx
@@ -25,6 +25,9 @@ class AxisMesh:
             skip_errors=True
         )
         return vao
+    
+    # The axes are rendered as simple lines on the screen, allowing a visual reference
+    # for orientation and scale in a three-dimensional graphical environment.
 
     def render(self):
         self.vao.render(mgl.LINES)
